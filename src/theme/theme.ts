@@ -3,6 +3,7 @@ import { DefaultTheme } from 'styled-components'
 import * as iconComponents from '@/components/atoms/Icon/icons'
 import { ThemeGrid } from '@/components/atoms/System'
 
+import { colors } from './colors'
 import { grid } from './grid'
 
 const fontSizes = {
@@ -30,25 +31,6 @@ const space = {
 const fonts = {
   primary: 'Work Sans, sans-serif',
   secondary: 'Helvetica',
-}
-
-const colors = {
-  primary: '#FFC800',
-  secondary: '#F2B705',
-  tertiary: '#8C6B08',
-  error: '#E00303',
-  black: '#010101',
-  white: '#ffffff',
-  offWhite: '#F3F3F3',
-  succes: '#aed223',
-  warning: '#ed4f88',
-  neutral: '#52bcdf',
-  grey: {
-    dark: '#010101',
-    medium: '#c0c8da',
-    light: '#d8deec',
-    lighter: '#F3F3F3',
-  },
 }
 
 export const icons = iconComponents

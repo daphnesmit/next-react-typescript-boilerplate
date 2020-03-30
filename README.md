@@ -98,6 +98,23 @@ To generate the favicons:
 - Run `npm run favicons`
 - The meta tags are automatically inserted in `_document.tsx`
 
+
+## 🚩 Linting
+
+### Prettier
+Nicer code with (prettier)[https://prettier.io/]!
+
+### ESLint
+Better code with (ESLint)[https://eslint.org/] and extensions for React and Typescript
+
+### EditorConfig
+Decide how many spaces or (ugh) tabs you want to intend your project with using (EditorConfig)[https://editorconfig.org/].
+
+### Commitlint
+You might want to remove or customize (Commitlint)[https://github.com/conventional-changelog/commitlint].
+Commitlint checks if your commit messages meet the conventional commit format. But in case you are using JIRA you might want to have a different commit message structure, example (here)[https://github.com/Gherciu/commitlint-jira] or (here)[https://www.npmjs.com/package/commitlint-config-jira]
+
+
 ## 🚀 Typescript
 
 This project is written to typescript. If you aren't that familiar with typescript this [cheatsheet](https://github.com/typescript-cheatsheets/react-typescript-cheatsheet) is a great resource to get familiar.
