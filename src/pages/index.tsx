@@ -82,7 +82,7 @@ const Page: NextPage<PageProps> = () => {
               {error && <Paragraph>Failed to load</Paragraph>}
               {!data && <Loader />}
               {data && (
-                <Flex>
+                <Flex flexDirection={['column', 'row']}>
                   <Card mr="xs" width="100px" height="100px" borderRadius="100%" overflow="hidden">
                     <Image
                       preload={data.avatar_url}

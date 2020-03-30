@@ -39,7 +39,7 @@ const Navigation: React.FC = () => {
         return (
           <Box key={item.title}>
             <ActiveLink href={item.href} passHref>
-              <NavigationLink as="a" px={15} mx={10}>
+              <NavigationLink as="a" px={[null, 'xs']} mx="xxs">
                 {item.title}
               </NavigationLink>
             </ActiveLink>
@@ -52,8 +52,8 @@ const Navigation: React.FC = () => {
 
 export const Header: React.FC<HeaderProps> = () => {
   return (
-    <Flex as="header" bg="offWhite" color="black" px={30} alignItems="center">
-      <Box mr="xs">
+    <Flex as="header" bg="offWhite" color="black" px="xs" alignItems="center">
+      <Box mr={['xxs', 'xs']}>
         <Link href="/">
           <a>
             <Box>
