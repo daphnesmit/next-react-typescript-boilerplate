@@ -1,61 +1,44 @@
-import Head from 'next/head'
+import { NextPage } from 'next'
+import { NextSeo } from 'next-seo'
+import React from 'react'
+
+import { Box } from '@/components/atoms/System'
+
+interface PageProps {}
 
 const Home = () => (
   <div className="container">
-    <Head>
-      <title>Create Next App</title>
-      <link rel="icon" href="/favicon.ico" />
-    </Head>
+    <h1 className="title">
+      Welcome to <a href="https://nextjs.org">Next.js!</a>
+    </h1>
 
-    <main>
-      <h1 className="title">
-        Welcome to <a href="https://nextjs.org">Next.js!</a>
-      </h1>
+    <p className="description">
+      Get started by editing <code>src/pages/index.tsx</code>
+    </p>
 
-      <p className="description">
-        Get started by editing <code>pages/index.js</code>
-      </p>
-
-      <div className="grid">
-        <a href="https://nextjs.org/docs" className="card">
-          <h3>Documentation &rarr;</h3>
-          <p>Find in-depth information about Next.js features and API.</p>
-        </a>
-
-        <a href="https://nextjs.org/learn" className="card">
-          <h3>Learn &rarr;</h3>
-          <p>Learn about Next.js in an interactive course with quizzes!</p>
-        </a>
-
-        <a
-          href="https://github.com/zeit/next.js/tree/master/examples"
-          className="card"
-        >
-          <h3>Examples &rarr;</h3>
-          <p>Discover and deploy boilerplate example Next.js projects.</p>
-        </a>
-
-        <a
-          href="https://zeit.co/import?filter=next.js&utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-          className="card"
-        >
-          <h3>Deploy &rarr;</h3>
-          <p>
-            Instantly deploy your Next.js site to a public URL with ZEIT Now.
-          </p>
-        </a>
-      </div>
-    </main>
-
-    <footer>
-      <a
-        href="https://zeit.co?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-        target="_blank"
-        rel="noopener noreferrer"
-      >
-        Powered by <img src="/zeit.svg" alt="ZEIT Logo" />
+    <div className="grid">
+      <a href="https://nextjs.org/docs" className="card">
+        <h3>Documentation &rarr;</h3>
+        <p>Find in-depth information about Next.js features and API.</p>
       </a>
-    </footer>
+
+      <a href="https://nextjs.org/learn" className="card">
+        <h3>Learn &rarr;</h3>
+        <p>Learn about Next.js in an interactive course with quizzes!</p>
+      </a>
+
+      <a href="https://github.com/zeit/next.js/tree/master/examples" className="card">
+        <h3>Examples &rarr;</h3>
+        <p>Discover and deploy boilerplate example Next.js projects.</p>
+      </a>
+
+      <a
+        href="https://zeit.co/import?filter=next.js&utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
+        className="card">
+        <h3>Deploy &rarr;</h3>
+        <p>Instantly deploy your Next.js site to a public URL with ZEIT Now.</p>
+      </a>
+    </div>
 
     <style jsx>{`
       .container {
@@ -132,8 +115,8 @@ const Home = () => (
         border-radius: 5px;
         padding: 0.75rem;
         font-size: 1.1rem;
-        font-family: Menlo, Monaco, Lucida Console, Liberation Mono,
-          DejaVu Sans Mono, Bitstream Vera Sans Mono, Courier New, monospace;
+        font-family: Menlo, Monaco, Lucida Console, Liberation Mono, DejaVu Sans Mono,
+          Bitstream Vera Sans Mono, Courier New, monospace;
       }
 
       .grid {
@@ -189,8 +172,8 @@ const Home = () => (
       body {
         padding: 0;
         margin: 0;
-        font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
-          Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+        font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen, Ubuntu, Cantarell,
+          Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
       }
 
       * {
@@ -200,4 +183,15 @@ const Home = () => (
   </div>
 )
 
-export default Home
+const Page: NextPage<PageProps> = () => {
+  return (
+    <>
+      <NextSeo title="Homepage" description="This is the homepage" />
+      <Box py="m">
+        <Home />
+      </Box>
+    </>
+  )
+}
+
+export default Page

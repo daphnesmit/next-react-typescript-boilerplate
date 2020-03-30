@@ -1,0 +1,19 @@
+# EditorConfig: http://EditorConfig.org
+
+# top-most EditorConfig file
+root = true
+
+# Unix-style newlines with a newline ending every file, indent style spaces and 4 spaces per tab
+[*]
+charset = utf-8
+end_of_line = lf
+insert_final_newline = true
+indent_size = 2
+indent_style = space
+trim_trailing_whitespace = true
+
+[*.{html,jsx,scss,js,json,svg,stylelintrc,babelrc,eslintrc,lock,feature}]
+indent_size = 2
+
+# Ignore paths
+[/.next/**]
