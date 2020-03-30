@@ -56,7 +56,6 @@ It optimizes the build for the best performance. 🎉!
 ### To deploy and build this project using a CI
 
 - Run `npm run build` to make a production build
-- Run `npm run build:server` to build files to the root (required by CI tooling)
 - Run `rm -rf node_modules` to remove devDependencies
 - Run `npm ci --prod` to build only production dependencies
 - IIS server: Create `web.config` file in the root where you fill in a bunch or stuff and run node index.js:

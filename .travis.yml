@@ -4,7 +4,6 @@ node_js:
 
 script:
   - npm run build
-  - npm run build:server
   - rm -rf node_modules
   - npm ci --prod
   - echo "Remove all unused files before zipping"
