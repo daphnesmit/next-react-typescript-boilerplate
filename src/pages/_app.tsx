@@ -16,7 +16,7 @@ if (process.browser) {
 const MyApp: AppType = ({ Component, pageProps }) => {
   return (
     <>
-      <DefaultSeo titleTemplate={`%s | Your Site`} />
+      <DefaultSeo titleTemplate={`%s | Next React Typescript Boilerplate`} />
       <ContextProvider>
         <ThemeProvider theme={theme}>
           <>
