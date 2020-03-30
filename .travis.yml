@@ -28,10 +28,10 @@ script:
   - rm -rf tsconfig.server.json
                 
 
-deploy:
-  provider: surge
-  project: './'
-  domain: next-react-typescript-boilerplate.surge.sh
-  skip_cleanup: true
-  on:
-    branch: master
+# deploy:
+#   provider: surge
+#   project: './'
+#   domain: next-react-typescript-boilerplate.surge.sh
+#   skip_cleanup: true
+#   on:
+#     branch: master
