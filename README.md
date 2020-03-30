@@ -1,6 +1,6 @@
 
 # 📦 Welcome to the official unofficial next-react-typescript-boilerplate setup
-
+Check out the demo of the setup at (Zeit)[https://next-react-typescript-boilerplate.now.sh/]!
 
 ## ✅ Features
 1. NextJs
