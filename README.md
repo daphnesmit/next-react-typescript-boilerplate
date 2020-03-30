@@ -2,21 +2,35 @@
 # 📦 Welcome to the official unofficial next-react-typescript-boilerplate setup
 
 
+## ✅ Features
+1. NextJs
+2. Custom Express server
+3. Styled Components
+4. Typescript
+5. Linting: prettier, eslint, editorconfig, commitlint and more.
+6. SVG file automation: .svg > .tsx
+7. Favicons automation: Generate your favicons with 1 command.
+8. Http service for api calls
+9. Styled system base components like: Box, Card, Grid, Row, Column, etc.
+10. Storybook
+
+
 ## 🔧 Todo
 
-1. Add (react-intl)[https://github.com/zeit/next.js/blob/master/examples/with-react-intl/server.js] internationalization. Other (example)[https://github.com/weiliang903/react-intl-with-next/blob/master/server.js].
+1. i18n: Add (react-intl)[https://github.com/zeit/next.js/blob/master/examples/with-react-intl/server.js] internationalization. Other (example)[https://github.com/weiliang903/react-intl-with-next/blob/master/server.js].
 2. Add withAuth HOC
-3. Need more? Send an email hi@daphnesmit.nl
+3. Implement (useSWR)[https://swr.now.sh/] and add API service with api calls
+4. Need more? Send an email (hi@daphnesmit.nl)[mailto:hi@daphnesmit.nl]
 
 
 ## 🎉 How to start!
 
-## Initialize the project
+### Initialize the project
 
 - Copy `.env.example` to `.env` and fill in the required variables
 - Run `npm install` to install the dependencies
 
-## Development server
+### Development server
 To start the development server, run the command:
 
 ```
@@ -39,7 +53,7 @@ npm run build / npm run start
 This build the app for production to the `.next` folder.<br>
 It optimizes the build for the best performance. 🎉!
 
-## To deploy and build this project using a CI
+### To deploy and build this project using a CI
 
 - Run `npm run build` to make a production build
 - Run `npm run build:server` to build files to the root (required by CI tooling)
@@ -54,7 +68,7 @@ It optimizes the build for the best performance. 🎉!
 ```
 
 
-## Next.js
+## 💡 Next.js
 
 This project uses next.js to achieve server side rendering ([https://nextjs.org/docs](https://nextjs.org/docs)). Some of the major differences with client side react applications are _routing_ and _server side data fetching_. Also you have to take in to account that you cannot use browser api on the server. To use browser api you need to wrap them in a condition. For example
 
@@ -64,7 +78,7 @@ if (process.browser) {
 }
 ```
 
-## Generate icons from svg
+## ✨ Generate icons from svg
 
 Place all your icons in `/assets/svg`. Run `npm run svgr`. This generates tsx components from your svg's and optimizes them with SVGO. SVGO config is located in the root of the project. The CamelCased filename will be the name of the icon.
 
@@ -76,7 +90,7 @@ Usage:
 
 `<Icon icon="Calendar" color="primary" />`
 
-## Generate favicons / app icons
+## ✨ Generate favicons / app icons
 
 To generate the favicons:
 
@@ -85,19 +99,19 @@ To generate the favicons:
 - Run `npm run favicons`
 - The meta tags are automatically inserted in `_document.tsx`
 
-## Typescript
+## 🚀 Typescript
 
 This project is written to typescript. If you aren't that familiar with typescript this [cheatsheet](https://github.com/typescript-cheatsheets/react-typescript-cheatsheet) is a great resource to get familiar.
 
-## Documentation
+## 📝 Documentation
 
 Documentation for this project is present in storybook. Run `npm run storybook` to start up the documentation.
 
-## Design system
+## 💄 Design system
 
 This project uses [styled-components](https://www.styled-components.com/) and [styled-system](https://github.com/styled-system/styled-system) to create the ui library, but using *css*, *css modules* and *sass* are still supported.
 
-## Atomic design structure
+## 👷 Atomic design structure
 
 The component archicture is set up following the atomic design methodology.
 

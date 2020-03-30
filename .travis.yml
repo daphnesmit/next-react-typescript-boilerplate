@@ -1,0 +1,38 @@
+language: node_js
+node_js:
+  - '12'
+
+script:
+  - npm run build
+  - npm run build:server
+  - rm -rf node_modules
+  - npm ci --prod
+  - echo "Remove all unused files before zipping"
+  - rm -rf types src server pages .vscode
+  - rm -rf .env.example
+  - rm -rf .eslintignore
+  - rm -rf .eslintrc.js
+  - rm -rf .gitignore
+  - rm -rf .npmrc
+  - rm -rf .prettierrc
+  - rm -rf .svgo.yml
+  - rm -rf commitlint.config.js
+  - rm -rf .travis.yml
+  - rm -rf babel.config.js
+  - rm -rf LICENSE
+  - rm -rf CODE_OF_CONDUCT.md
+  - rm -rf CONTRIBUTING.md
+  - rm -rf next-env.d.ts
+  - rm -rf nodemon.json
+  - rm -rf README.md
+  - rm -rf tsconfig.json
+  - rm -rf tsconfig.server.json
+                
+
+deploy:
+  provider: surge
+  project: './'
+  domain: next-react-typescript-boilerplate.surge.sh
+  skip_cleanup: true
+  on:
+    branch: master

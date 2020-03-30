@@ -26,6 +26,7 @@
   },
   "husky": {
     "hooks": {
+      "commit-msg": "npm run commitmsg",
       "pre-commit": "lint-staged",
       "pre-push": "npm run type-check"
     }
@@ -45,11 +46,14 @@
     }
   ],
   "scripts": {
+    "commitmsg": "npx commitlint -e $GIT_PARAMS",
+    "commit": "commit",
     "type-check": "tsc --noEmit",
     "lint-fix": "eslint src/ --ext .ts,.tsx --fix",
     "dev": "nodemon",
     "export": "next export",
     "build": "next build",
+    "build:server": "tsc --project tsconfig.server.json --outDir ./",
     "postbuild": "tsc --project tsconfig.server.json",
     "start": "NODE_ICU_DATA=node_modules/full-icu NODE_ENV=production node .next/server",
     "storybook": "start-storybook",
@@ -77,6 +81,10 @@
     "styled-system": "^5.1.5"
   },
   "devDependencies": {
+    "@commitlint/cli": "^8.3.5",
+    "@commitlint/config-angular": "^8.3.4",
+    "@commitlint/prompt": "^8.3.5",
+    "@commitlint/prompt-cli": "^8.3.5",
     "@storybook/addon-docs": "^5.3.17",
     "@storybook/addon-info": "^5.3.17",
     "@storybook/addon-knobs": "^5.3.17",
