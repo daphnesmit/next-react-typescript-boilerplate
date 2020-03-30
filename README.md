@@ -1,8 +1,15 @@
 
 # 📦 Welcome to the official unofficial next-react-typescript-boilerplate setup
 
-## 🎉 How to start!
 
+## 🔧 Todo
+
+1. Add (react-intl)[https://github.com/zeit/next.js/blob/master/examples/with-react-intl/server.js] internationalization. Other (example)[https://github.com/weiliang903/react-intl-with-next/blob/master/server.js].
+2. Add withAuth HOC
+3. Need more? Send an email hi@daphnesmit.nl
+
+
+## 🎉 How to start!
 
 ## Initialize the project
 

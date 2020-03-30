@@ -3,7 +3,6 @@ const withBundleAnalyzer = require('@next/bundle-analyzer')({
 })
 
 const withOffline = require('next-offline')
-// const withFonts = require('next-fonts')
 
 const plugins = [
   [
@@ -16,7 +15,6 @@ const plugins = [
     },
   ],
   withBundleAnalyzer,
-  // withFonts,
 ]
 
 module.exports = {

@@ -66,7 +66,6 @@
     "lint-staged": "^10.1.0",
     "next": "9.3.2",
     "next-compose-plugins": "^2.2.0",
-    "next-fonts": "^1.0.3",
     "next-offline": "^5.0.0",
     "next-seo": "^4.4.0",
     "polished": "^3.5.1",
@@ -92,6 +91,8 @@
     "@types/styled-system": "^5.1.9",
     "@typescript-eslint/eslint-plugin": "^2.25.0",
     "@typescript-eslint/parser": "^2.25.0",
+    "babel-plugin-styled-components": "^1.10.7",
+    "babel-preset-react-app": "^9.1.2",
     "circular-dependency-plugin": "^5.2.0",
     "eslint": "^6.8.0",
     "eslint-config-prettier": "^6.10.1",
@@ -108,6 +109,7 @@
     "nodemon": "^2.0.2",
     "npm": "^6.14.4",
     "prettier": "^2.0.2",
+    "react-docgen-typescript-loader": "^3.7.2",
     "ts-node": "^8.8.1",
     "typescript": "^3.8.3"
   }
