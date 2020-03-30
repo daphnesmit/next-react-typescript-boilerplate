@@ -1,6 +1,6 @@
 
 # 📦 Welcome to the official unofficial next-react-typescript-boilerplate setup
-Check out the demo of the setup at (Zeit)[https://next-react-typescript-boilerplate.now.sh/]!
+Check out the demo of the setup at [Zeit](https://next-react-typescript-boilerplate.now.sh/)!
 
 ## ✅ Features
 1. NextJs
@@ -17,10 +17,10 @@ Check out the demo of the setup at (Zeit)[https://next-react-typescript-boilerpl
 
 ## 🔧 Todo
 
-1. i18n: Add (react-intl)[https://github.com/zeit/next.js/blob/master/examples/with-react-intl/server.js] internationalization. Other (example)[https://github.com/weiliang903/react-intl-with-next/blob/master/server.js].
+1. i18n: Add [react-intl](https://github.com/zeit/next.js/blob/master/examples/with-react-intl/server.js) internationalization. Other [example](https://github.com/weiliang903/react-intl-with-next/blob/master/server.js).
 2. Add withAuth HOC
-3. Implement (useSWR)[https://swr.now.sh/] and add API service with api calls
-4. Need more? Send an email (hi@daphnesmit.nl)[mailto:hi@daphnesmit.nl]
+3. Implement [useSWR](https://swr.now.sh/) and add API service with api calls
+4. Need more? Send an email [hi@daphnesmit.nl](mailto:hi@daphnesmit.nl)
 
 
 ## 🎉 How to start!
@@ -69,10 +69,10 @@ It optimizes the build for the best performance. 🎉!
 
 ## 💡 Next.js
 
-This project uses next.js to achieve server side rendering ([https://nextjs.org/docs](https://nextjs.org/docs)). Some of the major differences with client side react applications are _routing_ and _server side data fetching_. Also you have to take in to account that you cannot use browser api on the server. To use browser api you need to wrap them in a condition. For example
+This project uses next.js to achieve server side rendering [https://nextjs.org/docs](https://nextjs.org/docs). Some of the major differences with client side react applications are _routing_ and _server side data fetching_. Also you have to take in to account that you cannot use browser api on the server. To use browser api you need to wrap them in a condition. For example
 
 ```javascript
-if (process.browser) {
+if [process.browser) {
   window.addEventListener(fn)
 }
 ```
@@ -102,17 +102,17 @@ To generate the favicons:
 ## 🚩 Linting
 
 ### Prettier
-Nicer code with (prettier)[https://prettier.io/]!
+Nicer code with [prettier](https://prettier.io/)!
 
 ### ESLint
-Better code with (ESLint)[https://eslint.org/] and extensions for React and Typescript
+Better code with [ESLint](https://eslint.org/) and extensions for React and Typescript
 
 ### EditorConfig
-Decide how many spaces or (ugh) tabs you want to intend your project with using (EditorConfig)[https://editorconfig.org/].
+Decide how many spaces or [ugh) tabs you want to intend your project with using [EditorConfig](https://editorconfig.org/).
 
 ### Commitlint
-You might want to remove or customize (Commitlint)[https://github.com/conventional-changelog/commitlint].
-Commitlint checks if your commit messages meet the conventional commit format. But in case you are using JIRA you might want to have a different commit message structure, example (here)[https://github.com/Gherciu/commitlint-jira] or (here)[https://www.npmjs.com/package/commitlint-config-jira]
+You might want to remove or customize [Commitlint](https://github.com/conventional-changelog/commitlint).
+Commitlint checks if your commit messages meet the conventional commit format. But in case you are using JIRA you might want to have a different commit message structure, example [here](https://github.com/Gherciu/commitlint-jira] or [here](https://www.npmjs.com/package/commitlint-config-jira]
 
 
 ## 🚀 Typescript
