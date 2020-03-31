@@ -83,6 +83,7 @@
     "swr": "^0.1.18"
   },
   "devDependencies": {
+    "@babel/runtime-corejs2": "^7.9.2",
     "@commitlint/cli": "^8.3.5",
     "@commitlint/config-angular": "^8.3.4",
     "@commitlint/prompt": "^8.3.5",
@@ -103,6 +104,7 @@
     "@types/styled-system": "^5.1.9",
     "@typescript-eslint/eslint-plugin": "^2.25.0",
     "@typescript-eslint/parser": "^2.25.0",
+    "babel-plugin-import": "^1.13.0",
     "babel-plugin-styled-components": "^1.10.7",
     "babel-preset-react-app": "^9.1.2",
     "circular-dependency-plugin": "^5.2.0",
