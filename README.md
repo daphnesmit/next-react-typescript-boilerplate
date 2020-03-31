@@ -13,14 +13,13 @@ Check out the demo of the setup at [Zeit](https://next-react-typescript-boilerpl
 8. Http service for api calls
 9. Styled system base components like: Box, Card, Grid, Row, Column, etc.
 10. Storybook
+11. i18n / multi language using [next-i18next](https://github.com/isaachinman/next-i18next) 
+12. useSWR for data fetching
 
 
 ## 🔧 Todo
 
-1. i18n: Add [react-intl](https://github.com/zeit/next.js/blob/master/examples/with-react-intl/server.js) internationalization. Other [example](https://github.com/weiliang903/react-intl-with-next/blob/master/server.js).
-2. Add withAuth HOC
-3. Implement [useSWR](https://swr.now.sh/) and add API service with api calls
-4. Need more? Send an email [hi@daphnesmit.nl](mailto:hi@daphnesmit.nl)
+Need more? Send an email [hi@daphnesmit.nl](mailto:hi@daphnesmit.nl)
 
 
 ## 🎉 How to start!
@@ -97,6 +96,17 @@ To generate the favicons:
 - Define the configuration in `/config/favicons.js`
 - Run `npm run favicons`
 - The meta tags are automatically inserted in `_document.tsx`
+
+
+## 🌐 I18n
+
+This boilerplate uses [next-i18next](https://github.com/isaachinman/next-i18next) for client and server side rendered translations. See [react-i18next](https://react.i18next.com/) on how to use it. **Note:** currently, when updating the JSON translation files, you need to restart the server in order to see the updates
+
+
+## 💫 Data fetching
+
+This project uses [SWR](https://swr.now.sh/) for fetching data. And example can be found on the /about page
+SWR is a React Hooks library for remote data fetching.
 
 
 ## 🚩 Linting

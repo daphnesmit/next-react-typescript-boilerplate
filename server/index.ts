@@ -1,6 +1,8 @@
 import express from 'express'
 import next from 'next'
 
+import { installExpressMiddleware, installI18nMiddleware } from './middleware'
+
 const port = process.env.PORT || 3000
 const dev = process.env.NODE_ENV !== 'production'
 const app = next({ dev })
@@ -11,9 +13,9 @@ app
   .then(() => {
     const server = express()
 
-    // serve favicon folder on root
-    server.use(express.static('public/favicon'))
-    server.use('/service-worker.js', express.static('.next/service-worker.js'))
+    installI18nMiddleware(server)
+
+    installExpressMiddleware(server)
 
     server.get('*', (req, res) => handle(req, res))
     server.listen(port, (err?: Error) => {

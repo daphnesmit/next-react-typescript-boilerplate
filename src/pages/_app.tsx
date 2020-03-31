@@ -1,3 +1,4 @@
+import { appWithTranslation } from '@server/i18n'
 import { DefaultSeo } from 'next-seo'
 import { AppType } from 'next/dist/next-server/lib/utils'
 import React from 'react'
@@ -31,4 +32,4 @@ const MyApp: AppType = ({ Component, pageProps }) => {
   )
 }
 
-export default MyApp
+export default appWithTranslation(MyApp)
