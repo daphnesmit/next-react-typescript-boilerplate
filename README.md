@@ -2,6 +2,8 @@
 # Welcome to the official unofficial next-react-typescript-boilerplate setup
 Check out the demo of the setup at [Zeit](https://next-react-typescript-boilerplate.now.sh/)! 
 
+[![Build Status](https://travis-ci.com/daphnesmit/next-react-typescript-boilerplate.svg?branch=master)](https://travis-ci.com/daphnesmit/next-react-typescript-boilerplate)
+
 ## ✅ Features
 1. NextJs
 2. Custom Express server
