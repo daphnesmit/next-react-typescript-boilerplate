@@ -1,5 +1,5 @@
 import fetch from 'isomorphic-fetch'
-import qs from 'qs'
+import wretch, { Wretcher, WretcherError } from 'wretch'
 
 export interface HttpErrorInput {
   message: string
@@ -8,26 +8,12 @@ export interface HttpErrorInput {
   body?: any
 }
 
-export class HttpError extends Error {
-  statusCode: number
-  response?: Response
-  body?: any
-
-  constructor(input: HttpErrorInput) {
-    super(input.message)
-    this.response = input.response
-    this.statusCode = input.statusCode
-    this.body = input.body
-    this.name = 'HttpError'
-  }
-}
-
 export type AbortFunction = () => void
 type Token = string | undefined
 type RequestFn = <T = any, I = any>(url: string, data: I, config?: RequestConfig) => Promise<T>
 type RequestGetFn = <T = any, I = any>(url: string, data?: I, config?: RequestConfig) => Promise<T>
 type BeforeHook = (client: HttpClient) => Promise<void> | void
-type ErrorHook = <T = any>(err: HttpError, request: () => Promise<T>) => any
+type ErrorHook = <T = any>(err: WretcherError, request: () => Promise<T>) => any
 type HttpClientInit = RequestInit & {
   baseUrl?: string
   returnType?: 'json' | 'text' | 'blob'
@@ -40,86 +26,67 @@ type RequestConfig = HttpClientInit & {
   createAbort?: (abortFunction: AbortFunction) => void
 }
 
+type Method = 'post' | 'put' | 'patch' | 'delete'
+
+interface RequestProps<T> {
+  method: 'get' | Method
+  url: string
+  data?: T
+  requestConfig?: RequestConfig
+}
+
 /**
  * Wrapper around fetch
  */
 export class HttpClient {
-  private defaultConfig: RequestConfig = {
-    returnType: 'json',
-    headers: {
-      'Content-Type': 'application/json',
-    },
-  }
-
+  private defaultConfig: RequestConfig = {}
   private config: RequestConfig = {}
   private token: Token
+  private wretcher: Wretcher
 
   constructor(config: HttpClientInit = {}) {
     this.config = {
       ...this.defaultConfig,
       ...config,
     }
-  }
 
-  private createRequest(method: 'GET'): RequestGetFn
-  private createRequest(method: string): RequestFn
-  private createRequest(method: 'GET' | string): RequestFn {
-    return (url, data, config) => {
-      if (method === 'GET') {
-        let getUrl = url
-        if (data) {
-          getUrl = url + '?' + qs.stringify(data)
-        }
-
-        return this.request(getUrl, {
-          ...config,
-          method: 'GET',
-        })
-      }
-
-      const contentType = config && config.headers && (config.headers as any)['Content-Type']
-
-      return this.request(url, {
-        ...config,
-        method,
-        body: this.createBody(data, contentType),
+    this.wretcher = wretch()
+      .polyfills({
+        fetch,
       })
-    }
+      .url(config.baseUrl || '')
   }
 
-  public get = this.createRequest('GET')
-  public post = this.createRequest('POST')
-  public put = this.createRequest('PUT')
-  public patch = this.createRequest('PATCH')
-  public delete = this.createRequest('DELETE')
+  private createRequest(method: 'get'): RequestGetFn
+  private createRequest(method: Method): RequestFn
+  private createRequest(method: 'get' | Method): RequestFn {
+    return (url, data, config) =>
+      this.request({
+        method,
+        url,
+        data,
+        requestConfig: config,
+      })
+  }
+
+  public get = this.createRequest('get')
+  public post = this.createRequest('post')
+  public put = this.createRequest('put')
+  public patch = this.createRequest('patch')
+  public delete = this.createRequest('delete')
 
   public setToken = (token: Token) => (this.token = token)
 
-  private setAuthenticationHeaders(config: RequestConfig) {
+  private getAuth() {
     // if authenticated set bearer token
-    if (this.token) {
-      config.headers = {
-        ...config.headers,
-        Authorization: `Bearer ${this.token}`,
-      }
-    }
+    return this.token ? `Bearer ${this.token}` : ''
   }
 
-  private setAbortController = (config: RequestConfig) => {
-    const { createAbort } = config
-    if (createAbort) {
-      if (typeof AbortController !== undefined) {
-        const controller = new AbortController()
-        const { signal } = controller
-        config.signal = signal
-        createAbort(controller.abort.bind(controller))
-      } else {
-        createAbort(() => console.log('The AbortController api isnt available in your browser'))
-      }
-    }
+  private getQuery(method: 'get' | Method, data: any) {
+    return method === 'get' ? data : ''
   }
 
-  public async request<T>(url: string, requestConfig: RequestConfig = {}): Promise<T> {
+  public async request<T, I>({ url, method, data, requestConfig = {} }: RequestProps<I>) {
     const { beforeHook } = this.config
 
     const config: RequestConfig = {
@@ -127,21 +94,36 @@ export class HttpClient {
       ...requestConfig,
     }
 
-    const { baseUrl = '' } = config
-
-    this.setAbortController(config)
+    const { createAbort } = config
 
     if (beforeHook) {
       await beforeHook(this)
     }
 
-    this.setAuthenticationHeaders(config)
+    const [controller, wretch] = this.wretcher
+      .auth(this.getAuth())
+      .options(config)
+      .query(this.getQuery(method, data))
+      .url(url)
+      [method](data)
+      .onAbort(() => console.log('Aborted !'))
+      .controller()
 
-    const requestFn = fetch(baseUrl + url, config)
-      .then(this.handleError)
-      .then(res => this.handleSuccess(res, config)) as Promise<T>
+    if (createAbort) {
+      createAbort(controller.abort.bind(controller))
+    }
 
-    return requestFn.catch(err => this.onError<T>(err, () => this.request(url, requestConfig)))
+    return wretch
+      .badRequest((err: WretcherError) => console.log(err.status))
+      .unauthorized((err: WretcherError) => console.log(err.status))
+      .forbidden((err: WretcherError) => console.log(err.status))
+      .notFound((err: WretcherError) => console.log(err.status))
+      .timeout((err: WretcherError) => console.log(err.status))
+      .internalError((err: WretcherError) => console.log(err.status))
+      .fetchError((error: WretcherError) => {
+        this.onError(error, () => this.request({ url, method, requestConfig }))
+      })
+      .res(res => this.handleSuccess(res, config) as Promise<T>)
   }
 
   private handleSuccess(res: Response, config: RequestConfig) {
@@ -154,7 +136,7 @@ export class HttpClient {
     return res[returnType]()
   }
 
-  private async onError<T = any>(err: HttpError, requestFn: () => Promise<T>) {
+  private async onError<T>(err: WretcherError, requestFn: () => Promise<T>) {
     const { onError } = this.config
 
     if (onError) {
@@ -162,51 +144,5 @@ export class HttpClient {
     }
 
     throw err
-  }
-
-  /**
-   * createBody is responsible for creating a body based on the content type
-   *
-   * @param body The body
-   * @param contentType The content type
-   */
-  private createBody(body: any, contentType: string): any {
-    switch (contentType) {
-      case 'application/json':
-        return JSON.stringify(body)
-      case 'application/x-www-form-urlencoded':
-        return qs.stringify(body)
-      default:
-        return JSON.stringify(body)
-    }
-  }
-
-  /**
-   * Handles the errors if the fetch request fails and throws a HttpError
-   * @param response
-   */
-  private async handleError(response: Response) {
-    if (response.ok) {
-      return response
-    }
-
-    const responseBody = await response.text()
-    let body: any = response
-
-    try {
-      body = JSON.parse(responseBody)
-    } catch {
-      body = responseBody
-    }
-
-    const error = {
-      message: `HttpError: ${response.status} - ${response.statusText}`,
-      statusCode: response.status,
-      response,
-      body,
-    }
-
-    console.error(error)
-    throw new HttpError(error)
   }
 }
