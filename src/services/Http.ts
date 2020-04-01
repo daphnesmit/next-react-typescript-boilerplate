@@ -1,8 +1,5 @@
 import fetch from 'isomorphic-fetch'
-// import qs from 'qs'
 import wretch, { Wretcher, WretcherError } from 'wretch'
-
-// import { config as env } from '@/utils/config'
 
 export interface HttpErrorInput {
   message: string
@@ -97,7 +94,7 @@ export class HttpClient {
       ...requestConfig,
     }
 
-    const { returnType = 'json', createAbort } = config
+    const { createAbort } = config
 
     if (beforeHook) {
       await beforeHook(this)
@@ -126,10 +123,17 @@ export class HttpClient {
       .fetchError((error: WretcherError) => {
         this.onError(error, () => this.request({ url, method, requestConfig }))
       })
-      [
-        // Unfortunately "as 'json'" is a hack because Wretch doesn't allow us to dynamically set response function
-        returnType as 'json'
-      ]() as Promise<T>
+      .res(res => this.handleSuccess(res, config) as Promise<T>)
+  }
+
+  private handleSuccess(res: Response, config: RequestConfig) {
+    const { returnType = 'json' } = config
+
+    if (res.status === 204 || res.status === 201) {
+      return res
+    }
+
+    return res[returnType]()
   }
 
   private async onError<T>(err: WretcherError, requestFn: () => Promise<T>) {
