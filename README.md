@@ -1,6 +1,6 @@
 
-# 📦 Welcome to the official unofficial next-react-typescript-boilerplate setup
-Check out the demo of the setup at [Zeit](https://next-react-typescript-boilerplate.now.sh/)!
+# Welcome to the official unofficial next-react-typescript-boilerplate setup
+Check out the demo of the setup at [Zeit](https://next-react-typescript-boilerplate.now.sh/)! 
 
 ## ✅ Features
 1. NextJs
@@ -139,7 +139,7 @@ This project uses [styled-components](https://www.styled-components.com/) and [s
 
 ## 👷 Atomic design structure
 
-The component archicture is set up following the atomic design methodology.
+The component archicture is set up following the [atomic design methodology](https://bradfrost.com/blog/post/atomic-web-design/).
 
 ## 🙌 Credits
 
