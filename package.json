@@ -58,7 +58,7 @@
     "export": "next export",
     "build": "next build",
     "postbuild": "tsc --project tsconfig.server.json",
-    "start": "next start",
+    "start": "NODE_ICU_DATA=node_modules/full-icu NODE_ENV=production node .next/server",
     "storybook": "start-storybook",
     "build-storybook": "build-storybook",
     "favicons": "node config/favicons",

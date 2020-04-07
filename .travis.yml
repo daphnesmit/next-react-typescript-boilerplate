@@ -4,11 +4,4 @@ node_js:
 
 script:
   - npm run build
-                
-deploy:
-  provider: script
-  script:
-    - npx now --prod --confirm --no-clipboard --token=$NOW_TOKEN --public
-  skip_cleanup: true
-  on:
-    branch: master
+            
