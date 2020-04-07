@@ -1,3 +1,4 @@
+import { darken } from 'polished'
 import { DefaultTheme } from 'styled-components'
 
 import * as iconComponents from '@/components/atoms/Icon/icons'
@@ -32,6 +33,49 @@ const fonts = {
   primary: 'Work Sans, sans-serif',
   secondary: 'Helvetica',
 }
+const buttonBase = {
+  fontWeight: 'bold',
+  border: '1px solid',
+  borderColor: 'primary',
+  padding: '0 20px',
+  height: 50,
+  borderRadius: 50,
+}
+
+export const buttons = {
+  primary: {
+    ...buttonBase,
+    bg: 'primary',
+    color: 'white',
+    ['&:hover, &:focus']: {
+      backgroundColor: darken(0.2, colors.primary),
+    },
+  },
+  secondary: {
+    ...buttonBase,
+    color: 'black',
+  },
+  clear: {
+    backgroundColor: 'transparent',
+    border: 'none',
+    padding: '0',
+    height: 'auto',
+  },
+}
+
+const shadows = {
+  small: '0 0 4px rgba(0, 0, 0, .125)',
+  large: '0 0 24px rgba(0, 0, 0, .125)',
+  outline: '0px 0px 0px 4px rgba(0, 0, 0, 0.1);',
+}
+
+const input = {
+  borderColor: '#bdbdbd',
+  height: '50px',
+  hover: {
+    borderColor: '#7b7b7b',
+  },
+}
 
 export const icons = iconComponents
 
@@ -43,8 +87,11 @@ export interface CustomTheme {
   space: typeof space
   fonts: typeof fonts
   colors: typeof colors
+  shadows: typeof shadows
+  buttons: typeof buttons
   grid: ThemeGrid
   outline?: string
+  input?: typeof input
 }
 
 export const theme: DefaultTheme = {
@@ -53,6 +100,9 @@ export const theme: DefaultTheme = {
   space,
   fonts,
   colors,
+  shadows,
+  buttons,
   grid,
   outline: `5px auto #52bcdf`,
+  input,
 }
