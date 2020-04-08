@@ -5,7 +5,7 @@ import nl from 'date-fns/locale/nl'
 import NextI18Next from 'next-i18next'
 
 const NextI18NextInstance = new NextI18Next({
-  localePath: (process as any).browser ? 'locales' : 'public/locales',
+  localePath: 'public/locales',
   ns: ['common', 'yup'],
   defaultNS: 'common',
   defaultLanguage: 'nl',
