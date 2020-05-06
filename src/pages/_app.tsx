@@ -4,6 +4,7 @@ import { AppType } from 'next/dist/next-server/lib/utils'
 import React from 'react'
 import { ThemeProvider } from 'styled-components'
 
+import { AnnouncementCenter } from '@/components/organisms'
 import { BaseLayout } from '@/components/templates'
 import { ContextProvider } from '@/context/ContextProvider'
 import { theme } from '@/theme'
@@ -24,6 +25,7 @@ const MyApp: AppType = ({ Component, pageProps }) => {
             <GlobalStyle />
             <BaseLayout>
               <Component {...pageProps} />
+              <AnnouncementCenter />
             </BaseLayout>
           </>
         </ThemeProvider>

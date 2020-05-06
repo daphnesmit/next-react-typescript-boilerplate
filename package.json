@@ -66,6 +66,7 @@
   },
   "dependencies": {
     "@next/bundle-analyzer": "^9.3.2",
+    "@reach/visually-hidden": "^0.10.1",
     "cookie-parser": "^1.4.5",
     "date-fns": "^2.11.1",
     "dotenv": "^8.2.0",
